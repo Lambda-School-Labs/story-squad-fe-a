@@ -2,6 +2,10 @@ import React, { useEffect } from 'react';
 import OktaSignIn from '@okta/okta-signin-widget';
 
 import { config } from '../../../utils/oktaConfig';
+import '@okta/okta-signin-widget/dist/css/okta-sign-in.min.css';
+// import './_LoginContainerStyled.less';
+
+import Header from '../../common/Header';
 
 const LoginContainer = () => {
   useEffect(() => {
@@ -12,11 +16,11 @@ const LoginContainer = () => {
       clientId,
       redirectUri,
       registration: {
-        click: function () {
-          window.location.href = 'https://acme.com/sign-up'; //This just redirects to a random page for now, will have actual page when signup feature is complete
-        },
+        // click: function () {
+        //   window.location.href = 'https://acme.com/sign-up'; //This just redirects to a random page for now, will have actual page when signup feature is complete
+        // },
       },
-      features: { registration: false },
+      features: { registration: true },
       // turning this feature on allows your widget to use Okta for user registration
       logo: 'path-to-your-logo',
       // add your custom logo to your signing/register widget here.
@@ -49,7 +53,14 @@ const LoginContainer = () => {
     );
   }, []);
 
-  return <div id="sign-in-widget" />;
+  return (
+    <>
+      <Header displayMenu={false} />
+      <div>
+        <div id="sign-in-widget" />
+      </div>
+    </>
+  );
 };
 
 export default LoginContainer;
